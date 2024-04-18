@@ -1,0 +1,9 @@
+<div class="layout__container">
+  <app-sidebar></app-sidebar>
+  <div class="layout__content-container">
+    <div class="layout__top-bar" *ngIf="!isAboutPage">
+      <button mat-raised-button color="secondary">Refresh</button>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>
