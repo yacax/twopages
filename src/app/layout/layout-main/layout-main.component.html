@@ -2,7 +2,9 @@
   <app-sidebar></app-sidebar>
   <div class="layout__content-container">
     <div class="layout__top-bar" *ngIf="!isAboutPage">
-      <button mat-raised-button color="secondary">Refresh</button>
+      <button mat-raised-button color="secondary" (click)="handleFormClear()">
+        Refresh
+      </button>
     </div>
     <ng-content></ng-content>
   </div>

@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutMainComponent } from '../../layout/layout-main/layout-main.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../../core/storage.service';
+import { FormStateService } from '../../core/form-state.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -27,24 +30,49 @@ import { StorageService } from '../../core/storage.service';
   ],
 })
 export class OverviewComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    id: [null],
+    name: [''],
+    age: ['', [Validators.min(0), Validators.max(125)]],
+    gender: [''],
+    dob: [''],
+  });
+
   startDate = new Date();
+  isFormEditMode = false;
 
-  constructor(private storageService: StorageService) {
-    this.form = new FormGroup({
-      name: new FormControl(''),
-      age: new FormControl('', [Validators.min(0), Validators.max(125)]),
-      gender: new FormControl(''),
-      dob: new FormControl(''),
-    });
+  constructor(
+    private formBuilder: FormBuilder,
+    private formStateService: FormStateService,
+    private storageService: StorageService,
+    private router: Router
+  ) {
+    this.subscribeToFormChanges();
+  }
 
-    this.form
-      .get('age')!
-      .valueChanges.subscribe(age => this.updateStartDateBasedOnAge(age));
+  private subscribeToFormChanges() {
+    this.form.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(value => {
+        this.formStateService.saveFormState(value);
+        this.updateStartDateBasedOnAge(value.age || 20);
+      });
   }
 
   ngOnInit(): void {
-    this.updateStartDateBasedOnAge(this.form.value.age || 20);
+    this.formStateService.isEditing$.subscribe(newValueIsEditing => {
+      this.isFormEditMode = newValueIsEditing;
+    });
+
+    this.formStateService.formState$.subscribe(state => {
+      if (state) {
+        this.form.patchValue(state);
+        this.updateStartDateBasedOnAge(this.form.value.age || 20);
+      } else {
+        this.form.reset();
+      }
+    });
+
   }
 
   updateStartDateBasedOnAge(age: number) {
@@ -57,7 +85,19 @@ export class OverviewComponent implements OnInit {
   }
 
   onSubmit() {
-    this.storageService.addUser(this.form.value);
-    console.log(this.storageService.getUsers());
+    if (this.form.invalid) return;
+    this.saveData();
+    this.formStateService.clearFormState();
+    this.form.reset();
+    this.router.navigate(['/about']);
+  }
+
+  private saveData(): void {
+    const data = this.form.value;
+    if (this.isFormEditMode) {
+      this.storageService.editUser(data);
+    } else {
+      this.storageService.addUser(data);
+    }
   }
 }

@@ -1,9 +1,13 @@
 <app-layout-main>
   <h2>About Page</h2>
   <div *ngIf="users && users.length; else noDataTemplate">
-    <app-user-card *ngFor="let user of users" [userData]="user"></app-user-card>
+    <app-user-card
+      *ngFor="let user of users"
+      [userData]="user"
+      (refreshUsers)="loadUsers()"
+    ></app-user-card>
   </div>
   <ng-template #noDataTemplate>
-    <p>No users found.</p>
+    <p>No records</p>
   </ng-template>
 </app-layout-main>
