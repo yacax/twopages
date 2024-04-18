@@ -22,6 +22,6 @@ export class AboutComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.users = this.storageService.getData('users') || [];
+    this.users = this.storageService.getUsers();
   }
 }
