@@ -1,0 +1,17 @@
+.layout {
+  &__container {
+    display: flex;
+    height: 100vh;
+  }
+
+  &__content-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__top-bar {
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+}

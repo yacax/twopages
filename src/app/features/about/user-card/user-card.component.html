@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title>{{ userData.name }}</mat-card-title>
+  <mat-card-content>
+    <p>Age: {{ userData.age }}</p>
+    <p>Gender: {{ userData.gender }}</p>
+    <p>Date of Birth: {{ userData.dob }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="edit.emit(userData)">
+      Edit
+    </button>
+    <button mat-button color="warn" (click)="delete.emit(userData.id)">
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>
