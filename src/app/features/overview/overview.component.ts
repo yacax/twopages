@@ -72,6 +72,7 @@ export class OverviewComponent implements OnInit {
         this.form.reset();
       }
     });
+
   }
 
   updateStartDateBasedOnAge(age: number) {
