@@ -39,7 +39,7 @@
       [disabled]="form.invalid"
       class="overview__submit-button"
     >
-      Submit
+      {{ isFormEditMode ? 'Update' : 'Submit' }}
     </button>
   </form>
 </app-layout-main>

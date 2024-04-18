@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,8 @@ export class StorageService {
   constructor() {}
 
   addUser(user: User): void {
-    const users = this.getData('users') || [];
+    const users = this.getUsers();
+    user.id = uuidv4();
     users.push(user);
     this.setData('users', users);
   }
@@ -17,13 +19,27 @@ export class StorageService {
     return this.getData('users');
   }
 
-  deleteUser(name: string): void {
-    const users = this.getData('users') || [];
-    const updatedUsers = users.filter(user => user.name !== name);
+  editUser(user: User): void {
+    const users = this.getUsers();
+    const updatedUsers = users.map(item => {
+      if (item.id === user.id) {
+        return user;
+      }
+      return item;
+    });
     this.setData('users', updatedUsers);
   }
 
-  setData(key: string, data: User[]): void {
+  deleteUser(userId: string): void {
+    const users = this.getUsers();
+    const initialUsersLength = users.length;
+    const updatedUsers = users.filter(user => user.id !== userId);
+    if (initialUsersLength !== updatedUsers.length) {
+      this.setData('users', updatedUsers);
+    }
+  }
+
+  setData(key: string, data: any[]): void {
     try {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (e) {
@@ -40,7 +56,7 @@ export class StorageService {
     localStorage.removeItem(key);
   }
 
-  clearAll(): void {
+  clearAllStorage(): void {
     localStorage.clear();
   }
 }
