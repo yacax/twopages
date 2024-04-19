@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  flex-shrink: 0;
+
+  &__co {
+    flex-basis: 50%;
+    text-align: left;
+  }
+  &__year {
+    text-align: right;
+  }
+}

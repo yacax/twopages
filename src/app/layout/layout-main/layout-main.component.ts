@@ -4,11 +4,19 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { FormStateService } from '../../core/form-state.service';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-layout-main',
   standalone: true,
-  imports: [SidebarComponent, CommonModule, MatButtonModule],
+  imports: [
+    SidebarComponent,
+    CommonModule,
+    MatButtonModule,
+    HeaderComponent,
+    FooterComponent,
+  ],
   templateUrl: './layout-main.component.html',
   styleUrl: './layout-main.component.scss',
 })
