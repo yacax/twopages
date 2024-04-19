@@ -9,6 +9,4 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'twopages';
-}
+export class AppComponent {}

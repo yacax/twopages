@@ -1,5 +1,4 @@
 <app-layout-main>
-  <h2>About Page</h2>
   <div *ngIf="users && users.length; else noDataTemplate">
     <app-user-card
       *ngFor="let user of users"
@@ -8,6 +7,6 @@
     ></app-user-card>
   </div>
   <ng-template #noDataTemplate>
-    <p>No records</p>
+    <p class="about__no-records">No records</p>
   </ng-template>
 </app-layout-main>
