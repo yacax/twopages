@@ -1,18 +1,29 @@
 <div class="layout">
-  <app-header></app-header>
+  <header>
+    <app-header></app-header>
+  </header>
   <main class="layout__container">
-    <app-sidebar></app-sidebar>
+    <aside>
+      <app-sidebar></app-sidebar>
+    </aside>
     <section class="layout__section-container">
-      <button
-        *ngIf="!isAboutPage"
-        mat-raised-button
-        color="secondary"
-        (click)="handleFormClear()"
-      >
-        Refresh
-      </button>
-      <ng-content></ng-content>
+      <mat-card class="layout__button-background">
+        <button
+          class="layout__button-refresh"
+          *ngIf="!isAboutPage"
+          mat-raised-button
+          color="warn"
+          (click)="handleFormClear()"
+        >
+          Refresh
+        </button>
+      </mat-card>
+      <mat-card class="layout__content-background">
+        <ng-content></ng-content>
+      </mat-card>
     </section>
   </main>
-  <app-footer></app-footer>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
 </div>
