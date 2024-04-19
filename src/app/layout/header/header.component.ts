@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { ThemeHandleService } from '../../core/theme-handle.service';
 
 @Component({
   selector: 'app-header',
@@ -12,13 +13,19 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+  isDarkMode = false;
+  constructor(
+    private router: Router,
+    private themeHandleService: ThemeHandleService
+  ) {}
 
   goToHome() {
     this.router.navigate(['/']);
   }
 
-  toggleTheme() {
-    console.log('Toggle theme');
+  toggleTheme(): void {
+    console.log('toggle theme');
+    this.isDarkMode = !this.isDarkMode;
+    this.themeHandleService.switchTheme(this.isDarkMode);
   }
 }
