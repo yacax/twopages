@@ -24,7 +24,6 @@ export class HeaderComponent {
   }
 
   toggleTheme(): void {
-    console.log('toggle theme');
     this.isDarkMode = !this.isDarkMode;
     this.themeHandleService.switchTheme(this.isDarkMode);
   }

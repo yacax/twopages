@@ -1,8 +1,24 @@
 <mat-sidenav-container class="sidebar__container">
   <mat-sidenav class="sidebar__navigation" #sidenav mode="side" opened="true">
-    <nav>
-      <button mat-button routerLink="/">Overview</button>
-      <button mat-button routerLink="/about">About</button>
+    <nav class="sidebar__nav">
+      <button
+        class="sidebar__button"
+        mat-stroked-button
+        routerLink="/"
+        routerLinkActive="sidebar__button_active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Overview
+      </button>
+      <button
+        class="sidebar__button"
+        mat-stroked-button
+        routerLink="/about"
+        routerLinkActive="sidebar__button_active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        About
+      </button>
     </nav>
   </mat-sidenav>
 </mat-sidenav-container>

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormStateService } from '../../core/form-state.service';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'app-layout-main',
@@ -16,6 +17,7 @@ import { FooterComponent } from '../footer/footer.component';
     MatButtonModule,
     HeaderComponent,
     FooterComponent,
+    MatCard,
   ],
   templateUrl: './layout-main.component.html',
   styleUrl: './layout-main.component.scss',

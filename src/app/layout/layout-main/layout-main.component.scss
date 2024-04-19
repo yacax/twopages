@@ -13,4 +13,20 @@
     display: flex;
     flex-direction: column;
   }
+
+  &__button-refresh {
+    margin: 20px 50px;
+  }
+
+  &__content-background {
+    height: 100%;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  &__button-background {
+    box-shadow: none;
+    border-radius: 0;
+  }
 }
