@@ -1,17 +1,16 @@
 .layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
   &__container {
     display: flex;
-    height: 100vh;
+    flex: 1;
   }
 
-  &__content-container {
+  &__section-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-  }
-
-  &__top-bar {
-    padding: 10px;
-    background-color: #f0f0f0;
   }
 }
