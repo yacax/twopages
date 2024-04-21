@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,8 +19,8 @@ import { MatCard } from '@angular/material/card';
     FooterComponent,
     MatCard,
   ],
-  templateUrl: './layout-main.component.html',
-  styleUrl: './layout-main.component.scss',
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.scss',
 })
 export class LayoutMainComponent {
   constructor(
@@ -33,7 +33,6 @@ export class LayoutMainComponent {
   }
 
   handleFormClear(): void {
-    console.log('Clearing form state');
     this.formStateService.clearFormState();
   }
 }
