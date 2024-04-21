@@ -7,20 +7,16 @@
       <app-sidebar></app-sidebar>
     </aside>
     <section class="layout__section-container">
-      <mat-card class="layout__button-background">
-        <button
-          class="layout__button-refresh"
-          *ngIf="!isAboutPage"
-          mat-raised-button
-          color="warn"
-          (click)="handleFormClear()"
-        >
-          Refresh
-        </button>
-      </mat-card>
-      <mat-card class="layout__content-background">
-        <ng-content></ng-content>
-      </mat-card>
+      <button
+        class="layout__button-refresh"
+        *ngIf="!isAboutPage"
+        mat-raised-button
+        color="warn"
+        (click)="handleFormClear()"
+      >
+        Refresh
+      </button>
+      <ng-content></ng-content>
     </section>
   </main>
   <footer>
