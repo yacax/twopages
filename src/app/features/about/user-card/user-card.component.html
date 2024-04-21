@@ -5,7 +5,9 @@
   <mat-card-content>
     <p class="user-card__body-text">Age: {{ userData.age }}</p>
     <p class="user-card__body-text">Gender: {{ userData.gender }}</p>
-    <p class="user-card__body-text">Date of Birth: {{ userData.dob }}</p>
+    <p class="user-card__body-text">
+      Date of Birth: {{ userData.dob | date: 'dd.MM.yyyy' }}
+    </p>
   </mat-card-content>
   <mat-card-actions>
     <button
