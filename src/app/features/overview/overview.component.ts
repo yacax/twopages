@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutMainComponent } from '../../layout/layout-main/layout-main.component';
+import { LayoutMainComponent } from '../../layout/layout/layout.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -72,7 +72,6 @@ export class OverviewComponent implements OnInit {
         this.form.reset();
       }
     });
-
   }
 
   updateStartDateBasedOnAge(age: number) {

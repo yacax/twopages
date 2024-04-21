@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutMainComponent } from '../../layout/layout-main/layout-main.component';
+import { LayoutMainComponent } from '../../layout/layout/layout.component';
 import { StorageService } from '../../core/storage.service';
 import { UserCardComponent } from '../about/user-card/user-card.component';
 import { User } from '../../models/user.model';
